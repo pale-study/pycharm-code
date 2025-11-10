@@ -1,0 +1,283 @@
+import null
+
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 60,
+   "id": "f6750282-03da-4d6a-8636-756f4ee93662",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "stu_list=[]\n",
+    "courses=tuple([\"人工智能\",\"马哲\",\"英语\",\"高等数学\"])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 61,
+   "id": "2e0bc53f-07d5-4de0-a296-2815909d7148",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Student():\n",
+    "    def __init__(self,stu_no,name):\n",
+    "        self.stu_no=stu_no\n",
+    "        self.name=name\n",
+    "    def input_Scores(self):\n",
+    "        score_dict={}\n",
+    "        for key in courses:\n",
+    "            score = int(input(f\"请输入{key}的成绩:\"))\n",
+    "            score_dict[key]=score\n",
+    "        self.scores=score_dict\n",
+    "        return score_dict\n",
+    "    def getAverage(self):\n",
+    "        sum =0\n",
+    "        for key,value in self.scores.items():\n",
+    "            sum =sum + value\n",
+    "        average =sum/len(self.scores)\n",
+    "        return average\n",
+    "        "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 62,
+   "id": "3cfd371f-c2ef-4fd6-b945-cd7762d8c687",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def AddNewStudent():\n",
+    "    no = input(\"请输入学号:\")\n",
+    "    name = input(\"请输入姓名:\")\n",
+    "    newstu= Student(no,name)\n",
+    "    newstu.input_Scores()\n",
+    "    stu_list.append(newstu)\n",
+    "    print(f\"新加入学生的平均成绩为{newstu.getAverage()}\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 63,
+   "id": "70b1180a-4618-462b-874d-ff4df4c75af6",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def list_stu():\n",
+    "    for stu in stu_list:\n",
+    "        print(f\"学号：{stu.stu_no}姓名{stu.name},成绩如下：\\n\")\n",
+    "        for key,value in stu.scores.items():\n",
+    "            print(f\"{key}：{value}\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 64,
+   "id": "fa781f5b-2a13-45e5-a068-bf483d0ce655",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def computecourseaverage():\n",
+    "    course_average={}\n",
+    "    for course in courses:\n",
+    "        course_average[course]=0\n",
+    "    for stu in stu_list:\n",
+    "        for key,value in stu.scores.items():\n",
+    "            course_average[key] += value\n",
+    "    for key,value in course_average.items():\n",
+    "        course_average[key]=value/len(stu_list)\n",
+    "    return course_average\n",
+    "        \n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "903458a9-0fd4-4f05-8958-87229287a22b",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdin",
+     "output_type": "stream",
+     "text": [
+      "输入你要进行的选择:0.退出程序\n",
+      "                                       1.创建一个新的学生，\n",
+      "                                       2.计算现有学生的各科平均成绩，\n",
+      "                                       3.列出所有学生各科成绩,\n",
+      "                                        1\n",
+      "请输入学号: 1\n",
+      "请输入姓名: 100\n",
+      "请输入人工智能的成绩: 90\n",
+      "请输入马哲的成绩: 80\n",
+      "请输入英语的成绩: 95\n",
+      "请输入高等数学的成绩: 88\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "新加入学生的平均成绩为88.25\n"
+     ]
+    },
+    {
+     "name": "stdin",
+     "output_type": "stream",
+     "text": [
+      "输入你要进行的选择:0.退出程序\n",
+      "                                       1.创建一个新的学生，\n",
+      "                                       2.计算现有学生的各科平均成绩，\n",
+      "                                       3.列出所有学生各科成绩,\n",
+      "                                        1\n",
+      "请输入学号: 2\n",
+      "请输入姓名: 100\n",
+      "请输入人工智能的成绩: 90\n",
+      "请输入马哲的成绩: 900\n",
+      "请输入英语的成绩: 99\n",
+      "请输入高等数学的成绩: 990\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "新加入学生的平均成绩为519.75\n"
+     ]
+    },
+    {
+     "name": "stdin",
+     "output_type": "stream",
+     "text": [
+      "输入你要进行的选择:0.退出程序\n",
+      "                                       1.创建一个新的学生，\n",
+      "                                       2.计算现有学生的各科平均成绩，\n",
+      "                                       3.列出所有学生各科成绩,\n",
+      "                                        3\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "学号：1姓名100,成绩如下：\n",
+      "\n",
+      "人工智能：90\n",
+      "马哲：80\n",
+      "英语：95\n",
+      "高等数学：88\n",
+      "学号：2姓名100,成绩如下：\n",
+      "\n",
+      "人工智能：90\n",
+      "马哲：900\n",
+      "英语：99\n",
+      "高等数学：990\n"
+     ]
+    },
+    {
+     "name": "stdin",
+     "output_type": "stream",
+     "text": [
+      "输入你要进行的选择:0.退出程序\n",
+      "                                       1.创建一个新的学生，\n",
+      "                                       2.计算现有学生的各科平均成绩，\n",
+      "                                       3.列出所有学生各科成绩,\n",
+      "                                        2\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "人工智能的平均成绩为90.0\n",
+      "马哲的平均成绩为490.0\n",
+      "英语的平均成绩为97.0\n",
+      "高等数学的平均成绩为539.0\n"
+     ]
+    }
+   ],
+   "source": [
+    "while(1):\n",
+    "    choice = int(input('''输入你要进行的选择:0.退出程序\n",
+    "                                       1.创建一个新的学生，\n",
+    "                                       2.计算现有学生的各科平均成绩，\n",
+    "                                       3.列出所有学生各科成绩,\n",
+    "                                       '''))\n",
+    "    if choice == 0:\n",
+    "        break\n",
+    "    elif choice == 1:\n",
+    "        AddNewStudent()\n",
+    "    elif choice == 2:\n",
+    "        course_average=computecourseaverage()\n",
+    "        for key,value in course_average.items():\n",
+    "            print(f\"{key}的平均成绩为{value}\")\n",
+    "    elif choice ==3:\n",
+    "        list_stu()\n",
+    "    else:\n",
+    "        print(\"输入有误，请重新输入\")\n",
+    "        "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "51e4d0a7-885c-46e3-82e3-b9a646720059",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdin",
+     "output_type": "stream",
+     "text": [
+      "请输入人工智能的成绩 90\n",
+      "请输入马哲的成绩 80\n",
+      "请输入英语的成绩 75\n",
+      "请输入高等数学的成绩 100\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{'人工智能': 90, '马哲': 80, '英语': 75, '高等数学': 100}\n"
+     ]
+    }
+   ],
+   "source": [
+    "score_dict=GetScores()\n",
+    "print(score_dict)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6b255b6c-bdf7-4d0d-9e05-99da8a1dfeaa",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def GetStudentInfo():\n",
+    "    student_Info={}\n",
+    "    stu_no="
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.0"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
